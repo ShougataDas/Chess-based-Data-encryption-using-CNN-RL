@@ -1,0 +1,5 @@
+torch>=2.0.0 tensorflow>=2.11.0 streamlit>=1.28.0 python-chess>=1.999 numpy>=1.23.0 Pillow>=9.0.0 matplotlib>=3.5.0
+
+Optional (for development/logging/debugging): tqdm jupyterlab
+
+💡 Tip: If you're unsure about exact versions, you can freeze your current environment with: pip freeze > requirements.txt

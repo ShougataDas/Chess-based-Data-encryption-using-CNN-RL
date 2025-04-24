@@ -1,0 +1,31 @@
+Runtime: 1.017951 seconds
+Moves:
+Chunk: 0110 Move: g2g3
+Chunk: 1000 Move: h7h6
+Chunk: 0110 Move: f1g2
+Chunk: 0101 Move: f7f6
+Chunk: 0110 Move: g3g4
+Chunk: 1100 Move: d7d5
+Chunk: 0110 Move: g4g5
+Chunk: 1100 Move: d8d6
+Chunk: 0110 Move: g5g6
+Chunk: 1111 Move: a7a6
+Chunk: 0010 Move: b1c3
+Chunk: 0000 Move: a6a5
+Chunk: 0110 Move: g2g3
+Chunk: 1101 Move: c7c5
+Chunk: 0111 Move: h2h4
+Chunk: 1001 Move: g7g6
+Chunk: 0010 Move: c2c3
+Chunk: 0000 Move: b8a6
+Chunk: 0111 Move: h1h3
+Chunk: 0111 Move: g8h6
+Chunk: 0110 Move: f1g2
+Chunk: 1111 Move: d8a5
+Chunk: 0111 Move: h4h5
+Chunk: 0010 Move: a5c3
+Chunk: 0110 Move: g3g4
+Chunk: 1100 Move: d7d5
+Chunk: 0110 Move: h3g3
+Chunk: 0100 Move: e7e6
+--------------------
