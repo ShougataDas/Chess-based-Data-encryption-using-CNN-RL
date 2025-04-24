@@ -23,7 +23,7 @@ chess-encryption-rl/
 ## 🚀 Getting Started
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/chess-encryption-rl.git
+git clone [https://github.com/yourusername/chess-encryption-rl.git](https://github.com/ShougataDas/Chess-based-Data-encryption-using-CNN-RL.git)
 cd chess-encryption-rl
 ```
 
