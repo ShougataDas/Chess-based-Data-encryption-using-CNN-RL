@@ -1,4 +1,4 @@
-Runtime: 1.017951 seconds
+Runtime: 0.629594 seconds
 Moves:
 Chunk: 0110 Move: g2g3
 Chunk: 1000 Move: h7h6

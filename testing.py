@@ -32,7 +32,7 @@ def generate_binary_dataset(num_samples=5):
 state = env.reset_board()
 # print("Initial state shape:", state.shape)
 
-with open(r"C:\Users\dasso\OneDrive\Desktop\New Chess Encryption\model\a.txt", 'rb') as file:
+with open(r"C:\Users\dasso\OneDrive\Desktop\New Chess Encryption\a.txt", 'rb') as file:
         content = file.read()
         binary_string = ''.join(format(byte, '08b') for byte in content)
 test_chunks = [binary_string]
@@ -74,7 +74,7 @@ runtime = end_time - start_time
 #print(r)       
 
 
-with open(r"model/output.txt", 'w') as file:
+with open(r"C:\Users\dasso\OneDrive\Desktop\New Chess Encryption\output.txt", 'w') as file:
     file.write(f"Runtime: {runtime:.6f} seconds\n")
     #file.write(f"\nBinary Data: {binary_string}\n")
     #file.write(f"Reward: {r['reward']}, Bits Encoded: {r['bits_encoded']}\n")

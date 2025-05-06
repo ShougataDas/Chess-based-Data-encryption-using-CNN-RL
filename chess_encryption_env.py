@@ -25,11 +25,6 @@ class ChessEncryptionEnv:
         current_fen = self.chess_board.fen()
         all_predicted_moves = predict_legal_moves(MLmodel, current_fen)
         filtered_moves = filter_moves(all_predicted_moves, chunk)
-        # print(f"FEN: {current_fen}")
-        # print(f"Current binary chunk: {chunk}")
-        # print(f"All predicted moves: {all_predicted_moves}")
-        # print(f"Filtered moves: {filtered_moves}")
-
         # Legal move validation
         valid_moves = []
         legal_moves_list = list(self.chess_board.legal_moves)
@@ -47,25 +42,16 @@ class ChessEncryptionEnv:
             return self.get_chunk_state(chunk), reward, False, "No valid move"
         
         self.action_space = spaces.Discrete(len(valid_moves))
-        
-        # Compute Q-values internally to select a valid action
-        #state_tensor = torch.FloatTensor(self._get_state()).unsqueeze(0)
         binary_vector = np.array([int(bit) for bit in chunk], dtype=np.float32)
-        #print(binary_vector)
         state_tensor = torch.FloatTensor(self._get_state(binary_vector)).unsqueeze(0).to(next(model.parameters()).device)
-
         q_values = model(state_tensor)
-
-        # Mask out Q-values for any indices beyond valid moves
         if self.action_space.n < q_values.shape[1]:
             q_values[0][self.action_space.n:] = -float('inf')
         action = q_values.argmax().item()
-
         # Bound action index
         if action >= len(valid_moves):
             reward = -10  # Match original reward function
             return self.get_chunk_state(chunk), reward, False, "No valid move"
-
         move = valid_moves[action]
         self.chess_board.push(move)
 

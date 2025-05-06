@@ -63,12 +63,16 @@ st.set_page_config(page_title="♟ Chess RL Encryption", layout="centered")
 st.title("♟ RL-Based Chess Encryption")
 st.markdown("Encrypt any binary string using chess moves via a trained Reinforcement Learning model.")
 
-binary_input = st.text_area("Enter Binary String (only 0s and 1s)", height=150)
+text_input = st.text_area("Enter text", height=150)
 upload_file = st.file_uploader("Or upload a binary file (image, txt, etc.)")
-
+binary_input = ""
 if upload_file:
     bytes_data = upload_file.read()
     binary_input = "".join(format(byte, '08b') for byte in bytes_data)
+
+if text_input:
+    binary_input = "".join(format(ord(char), '08b') for char in text_input)
+
 
 if st.button("Encrypt Binary"):
     if not binary_input or not all(c in '01' for c in binary_input):

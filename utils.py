@@ -1,8 +1,6 @@
 import chess
 import numpy as np 
 import tensorflow as tf
-
-
 # Function to create a move mask from legal moves
 def create_move_mask(board):
     """Create a binary mask of legal moves"""
@@ -21,18 +19,15 @@ def create_move_mask(board):
             print(f"Warning: Move {move} mapped to index {move_index} outside mask bounds of {len(mask)}")
 
     return mask
-
 # Function to create a move mask from legal moves
 # Improved function to convert a move to an index in the output vector
 def move_to_index(move):
     """Convert a chess move to a unique index"""
     from_square = move.from_square
     to_square = move.to_square
-
     # Regular moves
     if not move.promotion:
         return from_square * 64 + to_square
-
     # Promotion moves
     # Use a more reliable encoding for promotions
     # Base (4096) + source square (0-63) * 32 + destination file (0-7) * 4 + promotion type (0-3)
@@ -46,8 +41,6 @@ def move_to_index(move):
     }[move.promotion]
 
     return 4096 + from_square * 32 + to_file * 4 + promo_type
-
-
 # Function to convert an index back to a chess move
 def index_to_move(index, board):
     """Convert an index back to a chess move"""
@@ -67,29 +60,23 @@ def index_to_move(index, board):
         if not piece or piece.piece_type != chess.PAWN:
             # Cannot promote if there's no pawn at from_square
             return None
-
         # Determine promotion rank based on piece color
         to_rank = 7 if piece.color == chess.WHITE else 0
         to_square = chess.square(to_file, to_rank)
-
         # Create promotion move
         promotion_piece = [chess.KNIGHT, chess.BISHOP, chess.ROOK, chess.QUEEN][promo_type]
         return chess.Move(from_square, to_square, promotion=promotion_piece)
 
-
 def encode_board_from_fen(fen):
     """Convert FEN string to a tensor representation suitable for neural network input"""
     board = chess.Board(fen)
-
     # Initialize 8x8x13 tensor (12 channels for pieces + 1 channel for promotion potential)
     tensor = np.zeros((8, 8, 13), dtype=np.float32)
-
     # Map from piece to channel index
     piece_to_channel = {
         'P': 0, 'N': 1, 'B': 2, 'R': 3, 'Q': 4, 'K': 5,  # White pieces
         'p': 6, 'n': 7, 'b': 8, 'r': 9, 'q': 10, 'k': 11  # Black pieces
     }
-
     # Fill the tensor with piece positions
     for square in chess.SQUARES:
         piece = board.piece_at(square)
@@ -108,10 +95,6 @@ def encode_board_from_fen(fen):
                 if (piece.color == chess.WHITE and rank == 6) or \
                    (piece.color == chess.BLACK and rank == 1):
                     tensor[7-rank, file, 12] = 1  # Promotion potential
-
-    # Add turn, castling rights and en passant state
-    # These would be additional channels but omitted for brevity
-
     return tensor
 
 def to_binary_string(num: int, bits: int):
