@@ -1,9 +1,8 @@
-# Chess-based-Data-encryption-using-CNN-RL
+# Chess-based-Data-encryption-using-DQN-RL
 This project implements a secure and creative binary encoding scheme using chess. A Deep Q-Network (DQN) is trained to play legal chess moves that match a binary input, effectively encoding the binary string into a sequence of chess moves.
 
 ## 🧪 Features
 - **Binary-to-Move Encoding** using FEN and board state
-- **Trained Keras model** for predicting legal UCI moves
 - **Reinforcement Learning Agent** using PyTorch DQN
 - **Interactive GUI** built with Streamlit
 
